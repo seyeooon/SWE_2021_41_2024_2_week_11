@@ -22,13 +22,15 @@ def train_file_list_to_json(english_file_list: List[str], german_file_list: List
     template_mid = '\",\"German\":\"'
     template_end = '\"}'
 
-    # Can this be working?
     processed_file_list = []
     for english_file, german_file in zip(english_file_list, german_file_list):
+        # 영어와 독일어 파일 각각을 처리
         english_file = process_file(english_file)
-        english_file = process_file(german_file)
-
-        processed_file_list.append(template_end + english_file + template_mid + german_file + template_start)
+        german_file = process_file(german_file)
+        
+        # JSON 형식으로 결합하여 리스트에 추가
+        processed_file_list.append(template_start + english_file + template_mid + german_file + template_end)
+    
     return processed_file_list
 
 
